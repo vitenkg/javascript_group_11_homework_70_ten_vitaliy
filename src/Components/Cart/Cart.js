@@ -2,6 +2,8 @@ import React, {useEffect, useMemo, useState} from 'react';
 import './Cart.css';
 import {useDispatch, useSelector} from "react-redux";
 import {decrease} from "../../store/Actions/CartAction/Cart";
+import Modal from "../UI/Modal/Modal";
+import OrderInfo from "../OrderInfo/OrderInfo";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -9,6 +11,7 @@ const Cart = () => {
     const cartOrder = useSelector(state => state.cartOrder);
     const [orderPrice, setOrderPrice] = useState(0);
     const [disabled, setDisabled] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     let price = 0;
 
     const onCartItemHandler = (key) => {
@@ -33,32 +36,51 @@ const Cart = () => {
         let orderTotal = 0;
         Object.keys(cartOrder).map(price => {
             orderTotal += cartOrder[price].price;
-        return price;
+            return price;
         });
 
         setOrderPrice(orderTotal);
     }, [cartOrder])
 
+    const onOrderHandler = () => {
+        setModalOpen(true);
+    }
 
+    const onContinueHandler = () => {
+        setModalOpen(false);
+    };
+
+    const onCancelOrderHandler = () => {
+        console.log('Cancel');
+        setModalOpen(false);
+    }
 
     return (
         <div className="Cart">
+            <Modal show={modalOpen}>
+                <OrderInfo
+                    price = {orderPrice}
+                    onCancel={onCancelOrderHandler}
+                    onOrder = {onContinueHandler}
+                />
+            </Modal>
             <fieldset>
                 <legend>CART</legend>
                 <ul>
                     {Object.keys(cartOrder).map(order => {
-                       return (
-                        <li
-                            key={order}
-                            className="Order"
-                            onClick={() => onCartItemHandler(order)}
-                        >
-                            <p className="OrderName">{order}</p>
-                            <p className="OrderQty">x{cartOrder[order].qty}</p>
-                            <p className="OrderKGS">KGS</p>
-                            <p className="OrderPrice">{cartOrder[order].price}</p>
-                       </li>
-                       )})}
+                        return (
+                            <li
+                                key={order}
+                                className="Order"
+                                onClick={() => onCartItemHandler(order)}
+                            >
+                                <p className="OrderName">{order}</p>
+                                <p className="OrderQty">x{cartOrder[order].qty}</p>
+                                <p className="OrderKGS">KGS</p>
+                                <p className="OrderPrice">{cartOrder[order].price}</p>
+                            </li>
+                        )
+                    })}
                 </ul>
                 <div className="Total">
                     <p className="TotalP">Сумма заказа</p>
@@ -71,13 +93,13 @@ const Cart = () => {
 
                 </div>
                 <p className="CenterButton">
-                <button
-                    className="OrderButton"
-                    disabled={disabled}
-                    // onClick={props.onOrder}
-                >
-                    PLACE ORDER
-                </button>
+                    <button
+                        className="OrderButton"
+                        disabled={disabled}
+                        onClick={onOrderHandler}
+                    >
+                        PLACE ORDER
+                    </button>
                 </p>
             </fieldset>
 

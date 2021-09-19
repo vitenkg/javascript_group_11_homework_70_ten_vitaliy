@@ -22,3 +22,13 @@ export const fetchMenu = () => {
         }
     };
 };
+
+export const fetchData = (data) => {
+    console.log(data);
+    return async (dispatch, getState) => {
+        try {
+            await axiosApi.post('/cafe/order.json', data);
+        } catch (e) {
+        }
+    };
+}
