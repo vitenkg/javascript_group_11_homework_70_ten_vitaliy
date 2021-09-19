@@ -4,13 +4,17 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import App from './App';
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import menuReducer from "./store/Reducers/MenuReducer/Menu";
+import cartReducer from "./store/Reducers/CartReducer/Cart";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 const rootReducer = combineReducers({
-    menu:'',
-    cart: '',
+    menuList: menuReducer,
+    cartOrder: cartReducer,
 });
+
 const store = createStore(rootReducer, composeEnhancer(
     applyMiddleware(thunk)
 ));

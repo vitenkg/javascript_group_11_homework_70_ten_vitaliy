@@ -1,0 +1,29 @@
+.Cart {
+    display: inline-block;
+}
+
+.Total {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.TotalP {
+    width: 49%;
+}
+
+.Order {
+    display: inline-block;
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+
+.OrderName {
+    display: inline-block;
+    width: 40%;
+}
+
+.OrderQty {
+    display: inline-block;
+    /*width: 45%;*/
+    /*margin-left: 50px;*/
+}
