@@ -1,5 +1,6 @@
 .Cart {
     display: inline-block;
+    max-width: 40%;
 }
 
 .Total {
@@ -8,7 +9,7 @@
 }
 
 .TotalP {
-    width: 49%;
+    width: 60%;
 }
 
 .Order {
@@ -19,11 +20,20 @@
 
 .OrderName {
     display: inline-block;
-    width: 40%;
+    width: 35%;
 }
 
 .OrderQty {
     display: inline-block;
-    /*width: 45%;*/
-    /*margin-left: 50px;*/
+    width: 25%;
+}
+
+.OrderKGS {
+    display: inline-block;
+    width: 20%;
+}
+
+.OrderPrice {
+    display: inline-block;
+    width: 15%;
 }

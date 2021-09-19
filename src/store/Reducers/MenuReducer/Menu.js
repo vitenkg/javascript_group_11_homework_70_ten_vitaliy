@@ -1,10 +1,4 @@
-import {
-    DECREASE,
-    FETCH_MENU_FAILURE,
-    FETCH_MENU_REQUEST,
-    FETCH_MENU_SUCCESS,
-    INCREASE
-} from "../../Actions/MenuAction/Menu";
+import {FETCH_MENU_FAILURE, FETCH_MENU_REQUEST, FETCH_MENU_SUCCESS} from "../../Actions/MenuAction/Menu";
 
 
 const initialState = {
@@ -17,10 +11,6 @@ const initialState = {
 const menuReducer = (state = initialState, action) => {
     const payload = action.payload;
     switch (action.type) {
-        case INCREASE:
-            return {...state};
-        case DECREASE:
-            return {...state};
         case FETCH_MENU_REQUEST:
             return {...state, error: null, loading: true};
         case FETCH_MENU_SUCCESS:

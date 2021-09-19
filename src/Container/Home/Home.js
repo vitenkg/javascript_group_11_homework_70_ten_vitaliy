@@ -6,7 +6,7 @@ import Menu from "../../Components/Menu/Menu";
 const Home = () => {
 
     return (
-        <div>
+        <div className="Home">
             <Menu
             />
             <Cart

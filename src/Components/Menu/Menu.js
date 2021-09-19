@@ -3,23 +3,19 @@ import {useDispatch, useSelector} from "react-redux";
 import './Menu.css';
 import {fetchMenu} from "../../store/Actions/MenuAction/Menu";
 import Spinner from "../UI/Spinner/Spinner";
+import {increase} from "../../store/Actions/CartAction/Cart";
 
 const Menu = () => {
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menuList.menu);
     const loading = useSelector(state => state.menuList.loading)
-    const orderlist = useSelector(state => state.cartOrder)
 
     useEffect(() => {
         dispatch(fetchMenu());
     }, [dispatch]);
 
-    const onButtonHandler = key => {
-        console.log('Bottom ', key);
-        Object.keys(orderlist).map(order => {
-            console.log('map: ', order);
-
-        })
+    const onButtonHandler = (key, price) => {
+        dispatch(increase({key, price}));
     };
 
     let components = (
@@ -39,7 +35,7 @@ const Menu = () => {
                         <button
                             type="button"
                             className="BtnAdd"
-                            onClick={() => onButtonHandler(item.name)}
+                            onClick={() => onButtonHandler(item.name, item.price)}
                         >
                             Add to Cart</button>
                     </li>
