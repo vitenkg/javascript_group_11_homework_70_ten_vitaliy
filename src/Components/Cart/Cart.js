@@ -51,7 +51,6 @@ const Cart = () => {
     };
 
     const onCancelOrderHandler = () => {
-        console.log('Cancel');
         setModalOpen(false);
     }
 

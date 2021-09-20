@@ -18,9 +18,7 @@ const OrderInfo = props => {
             />
 
             <p><strong>Сумма заказа: {props.price}  KGS</strong></p>
-            <p>Продолжить?</p>
             <Button type="Danger" onClick={props.onCancel}>Отмена</Button>
-            {/*<Button type="Success" onClick={props.onOrder}>Продолжить</Button>*/}
         </>
     );
 };

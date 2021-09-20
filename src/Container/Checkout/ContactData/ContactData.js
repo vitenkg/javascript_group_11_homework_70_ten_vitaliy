@@ -5,9 +5,10 @@ import Spinner from "../../../Components/UI/Spinner/Spinner";
 import Button from "../../../Components/UI/Button/Button";
 import {useHistory} from "react-router-dom";
 import {fetchData} from "../../../store/Actions/MenuAction/Menu";
+import {fullErase} from "../../../store/Actions/CartAction/Cart";
 
 const ContactData = ({onClose}) => {
-    // let history = useHistory();
+    let history = useHistory();
     const dispatch = useDispatch();
     const loading = useSelector(state => state.menuList.loading);
     const orders = useSelector(state => state.cartOrder);
@@ -36,8 +37,9 @@ const ContactData = ({onClose}) => {
         }
 
         await dispatch(fetchData({customer, order}));
-        // history.replace('/');
-        onClose()
+        history.push('/');
+        dispatch(fullErase());
+        onClose();
     };
 
     let form = (

@@ -1,4 +1,4 @@
-import {DECREASE, INCREASE} from "../../Actions/CartAction/Cart";
+import {DECREASE, FULLERASE, INCREASE} from "../../Actions/CartAction/Cart";
 
 const initialState = {};
 
@@ -33,6 +33,8 @@ const cartReducer = (state = initialState, action) => {
                     }
                 };
             }
+        case FULLERASE:
+            return {};
         default:
             return state;
     }
